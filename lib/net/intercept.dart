@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flustars/flustars.dart';
+import 'package:sp_util/sp_util.dart';
 import 'package:flutter_deer/common/common.dart';
 import 'package:flutter_deer/util/log_utils.dart';
 import 'package:sprintf/sprintf.dart';
@@ -189,7 +189,7 @@ class AdapterInterceptor extends Interceptor{
               response.statusCode = ExceptionHandle.success;
             }
           } catch (e) {
-            Log.d('异常信息：$e');
+//            Log.d('异常信息：$e');
             // 解析异常直接按照返回原数据处理（一般为返回500,503 HTML页面代码）
             result = sprintf(_kFailureFormat, [response.statusCode, '服务器异常(${response.statusCode})']);
           }

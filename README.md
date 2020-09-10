@@ -61,9 +61,9 @@ iOS需要自行下载代码运行。
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 1.17.5
+    1. Flutter version 1.20.3
      
-    2. Dart version 2.8.4
+    2. Dart version 2.9.2
 
 ## 注意事项
 
@@ -71,11 +71,11 @@ iOS需要自行下载代码运行。
     iOS可以执行命令`flutter build ios` 以创建`release`版本。
     Android可以执行命令`flutter build apk` 以创建`release`版本。
 
-- 项目运行有问题可以在[iOS问题汇总](./iOS问题汇总.md)、[Android问题汇总](./Android问题汇总.md)中尝试寻找解决办法。
+- 项目运行有问题可以在[iOS问题汇总](./doc/iOS问题汇总.md)、[Android问题汇总](./doc/Android问题汇总.md)中尝试寻找解决办法。
 
 - 由于部分插件的原因，本项目在web上支持不完善（主要为功能方面，UI问题不大）。有兴趣的可自行运行体验。
         
-- 可以执行集成测试命令`flutter drive --profile --target=test_driver/driver.dart` 查看功能演示。
+- 可以执行集成测试命令`flutter drive --target=test_driver/driver.dart` 查看功能演示。
 
 - 因为页面有点多，一开始可能会导致页面无法与设计图对应上。我在代码注释中有添加设计图的相对路径，可以搜索或查找到对应页面，希望对你有帮助。
 

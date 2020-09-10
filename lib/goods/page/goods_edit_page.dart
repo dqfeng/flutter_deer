@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/goods/provider/goods_sort_provider.dart';
-import 'package:flutter_deer/goods/widgets/goods_sort_dialog.dart';
+import 'package:flutter_deer/goods/widgets/goods_sort_bottom_sheet.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
 import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/util/utils.dart';
+import 'package:flutter_deer/util/other_utils.dart';
 import 'package:flutter_deer/widgets/click_item.dart';
 import 'package:flutter_deer/widgets/load_image.dart';
 import 'package:flutter_deer/widgets/my_button.dart';
@@ -188,7 +188,7 @@ class _GoodsEditPageState extends State<GoodsEditPage> {
       /// 使用true则高度不受16分之9的最高限制
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return GoodsSortDialog(
+        return GoodsSortBottomSheet(
           provider: _provider,
           onSelected: (_, name) {
             setState(() {

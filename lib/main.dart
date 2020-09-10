@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:fluro/fluro.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +6,7 @@ import 'package:flutter_deer/common/common.dart';
 import 'package:flutter_deer/net/dio_utils.dart';
 import 'package:flutter_deer/net/intercept.dart';
 import 'package:flutter_deer/provider/theme_provider.dart';
-import 'package:flutter_deer/routers/404.dart';
-import 'package:flutter_deer/routers/application.dart';
+import 'package:flutter_deer/routers/not_found_page.dart';
 import 'package:flutter_deer/routers/routers.dart';
 import 'package:flutter_deer/util/device_utils.dart';
 import 'package:flutter_deer/util/log_utils.dart';
@@ -18,6 +15,7 @@ import 'package:oktoast/oktoast.dart';
 import 'package:flutter_deer/home/splash_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_deer/localization/app_localizations.dart';
+import 'package:sp_util/sp_util.dart';
 
 Future<void> main() async {
 //  debugProfileBuildsEnabled = true;
@@ -43,9 +41,7 @@ class MyApp extends StatelessWidget {
   MyApp({this.home, this.theme}) {
     Log.init();
     initDio();
-    final Router router = Router();
-    Routes.configureRoutes(router);
-    Application.router = router;
+    Routes.initRoutes();
   }
   
   void initDio() {
@@ -84,7 +80,7 @@ class MyApp extends StatelessWidget {
               darkTheme: provider.getTheme(isDarkMode: true),
               themeMode: provider.getThemeMode(),
               home: home ?? SplashPage(),
-              onGenerateRoute: Application.router.generator,
+              onGenerateRoute: Routes.router.generator,
               localizationsDelegates: const [
                 AppLocalizationsDelegate(),
                 GlobalMaterialLocalizations.delegate,
@@ -98,14 +94,14 @@ class MyApp extends StatelessWidget {
               builder: (context, child) {
                 /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
                 return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0), // 或者 MediaQueryData.fromWindow(WidgetsBinding.instance.window).copyWith(textScaleFactor: 1.0),
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                   child: child,
                 );
               },
               /// 因为使用了fluro，这里设置主要针对Web
               onUnknownRoute: (_) {
                 return MaterialPageRoute(
-                  builder: (BuildContext context) => PageNotFound(),
+                  builder: (BuildContext context) => NotFoundPage(),
                 );
               },
             );
